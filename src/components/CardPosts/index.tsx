@@ -2,7 +2,7 @@ import { PostContainer } from "./styles";
 
 export function Post() {
     return (
-        <PostContainer to={`/post/`}>
+        <PostContainer to={`/post/1`}>
             <div>
                 <strong>Titulo</strong>
                 <span>Data</span>

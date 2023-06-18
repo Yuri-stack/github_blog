@@ -1,4 +1,4 @@
-import { Post } from "../../components/Posts";
+import { Post } from "../../components/CardPosts";
 import { Profile } from "../../components/Profile/Profile";
 import { SearchInput } from "../../components/SearchInput";
 import { PostsListContainer } from "./styles";
