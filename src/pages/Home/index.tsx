@@ -4,23 +4,10 @@ import { Profile } from "../../components/Profile/Profile";
 import { SearchInput } from "../../components/SearchInput";
 import { PostsListContainer } from "./styles";
 import { PostsContext, UserI } from "../../context/PostsContext";
-import { api } from "../../lib/axios";
-
-interface ProfileData {
-    login: string;
-    bio: string;
-    avatar_url: string;
-    html_url: string;
-    name: string;
-    company?: string;
-    followers: number;
-  }
 
 export function Home() {
-    
-    const { user } = useContext(PostsContext)
 
-    // console.log(user.name)
+    const { posts } = useContext(PostsContext)
 
     // const [user, setUser] = useState<UserI>({} as UserI)
 
@@ -31,7 +18,7 @@ export function Home() {
     //     } catch (error) {
     //         console.log(error)
     //     }
-        
+
     // }
 
     // const getUser = async () => {
@@ -45,36 +32,38 @@ export function Home() {
     //     {} as ProfileData
     //   );
     //   const [isLoading, setIsLoading] = useState(true);
-    
+
     //   const getProfileData = useCallback(async () => {
     //     try {
     //       setIsLoading(true);
     //       const response = await api.get(`/users/Yuri-stack`);
-    
+
     //       setProfileData(response.data);
     //     } finally {
     //       setIsLoading(false);
     //     }
     //   }, [profileData]);
-    
+
     //   useEffect(() => {
     //     getProfileData();
     //   }, []);
 
     //   console.log(profileData.login)
 
-    // console.log(user.name)
-
     return (
         <>
             <Profile />
             <SearchInput />
             <PostsListContainer>
-                <Post />
-                <Post />
-                <Post />
-                <Post />
-                <Post />
+                {
+                    posts.items.map(item => (
+                        <Post 
+                            title={item.title} 
+                            body={item.body} 
+                            updated_at={item.updated_at} 
+                        />
+                    ))
+                }
             </PostsListContainer>
         </>
     )
