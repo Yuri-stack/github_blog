@@ -5,18 +5,18 @@ import { Router } from "./Router";
 
 import { GlobalStyle } from "./styles/global";
 import { defaultTheme } from "./styles/themes/default";
-import { PostsProvider } from "./context/PostsContext";
+import { Provider } from "./context/Context";
 
 export function App() {
     return (
         <ThemeProvider theme={defaultTheme}>
             <GlobalStyle />
 
-            <PostsProvider>
+            <Provider>
                 <BrowserRouter>
                     <Router />
                 </BrowserRouter>
-            </PostsProvider>
+            </Provider>
         </ThemeProvider>
     )
 }
