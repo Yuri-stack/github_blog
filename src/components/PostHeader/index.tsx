@@ -2,12 +2,19 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ExternalLink } from "../ExternalLink";
 import { PostHeaderContainer } from "./styles";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
-import { faCalendar,faChevronLeft,faComment } from "@fortawesome/free-solid-svg-icons";
+import { faCalendar, faChevronLeft, faComment } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
+import { ItemI } from "../../context/Context";
+import { relativeDateFormatter } from "../../utils/formatter";
 
-export function PostHeader() {
+interface PostHeaderProps {
+    item: ItemI
+}
 
+export function PostHeader({ item }: PostHeaderProps) {
     const navigate = useNavigate()
+
+    const formattedDate = relativeDateFormatter(item.created_at)
 
     const goBack = () => {
         navigate(-1)
@@ -16,28 +23,28 @@ export function PostHeader() {
     return (
         <PostHeaderContainer>
             <header>
-                <ExternalLink 
-                    as="button" 
-                    onClick={ goBack }
-                    icon={<FontAwesomeIcon icon={faChevronLeft} />} 
+                <ExternalLink
+                    as="button"
+                    onClick={goBack}
+                    icon={<FontAwesomeIcon icon={faChevronLeft} />}
                     text="Voltar" href="#" variant="iconLeft"
                 />
-                <ExternalLink text="Ver no Github" href="#" />
+                <ExternalLink text="Ver no Github" href={item.html_url} />
             </header>
 
-            <h1>Javascript</h1>
+            <h1>{item.title}</h1>
             <ul>
                 <li>
                     <FontAwesomeIcon icon={faGithub} />
-                    Yuri-stack
+                    {item.user.login}
                 </li>
                 <li>
                     <FontAwesomeIcon icon={faCalendar} />
-                    Há 1 dia
+                    {formattedDate}
                 </li>
                 <li>
                     <FontAwesomeIcon icon={faComment} />
-                    5 comentários
+                    {item.comments} comentários
                 </li>
             </ul>
         </PostHeaderContainer>

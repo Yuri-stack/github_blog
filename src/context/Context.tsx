@@ -18,7 +18,7 @@ export interface PostI {
 
 export interface ContextI {
     user?: UserI
-    posts?: PostI
+    posts: PostI
     getPosts: (query?: string) => Promise<void>
     isLoading: boolean
 }
@@ -34,6 +34,7 @@ export interface ItemI {
     number: string
     html_url: string
     comments: number
+    user: UserI
 }
 
 export const Context = createContext({} as ContextI);

@@ -2,7 +2,7 @@ import { ItemI } from "../../context/Context";
 import { relativeDateFormatter } from "../../utils/formatter";
 import { PostContainer } from "./styles";
 
-export function Post({ title, body, number, created_at }: ItemI) {
+export function PostCard({ title, body, number, created_at }: ItemI) {
     const formattedDate = relativeDateFormatter(created_at)
 
     return (

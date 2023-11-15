@@ -1,11 +1,14 @@
 import { PostContentContainer } from "./styles";
+import ReactMarkdown from 'react-markdown'
 
-export function PostContent() {
+interface PostContentProps{
+  content: string
+}
+
+export function PostContent({ content } : PostContentProps) {
   return (
     <PostContentContainer>
-        <pre>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius non placeat minus earum error, numquam ut similique tempora sit. Sed, vitae error rem nesciunt fuga mollitia libero quo voluptates laborum.
-        </pre>
+      <ReactMarkdown children={content} />
     </PostContentContainer>
   )
 }
